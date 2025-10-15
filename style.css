@@ -1,0 +1,110 @@
+:root{
+      --gold-25: rgba(180,146,44,.25); /* #B49B2C 25% */
+      --olive:#686931;
+      --ink-dark:#1E1E1E;
+      --bg:var(--gold-25);
+      --panel:#fff; --line:#dcd6c2; --muted:#5c5f63;
+      --header:var(--ink-dark); --cta:var(--olive); --cta-ink:#fff;
+      --radius:18px; --shadow:0 12px 28px rgba(0,0,0,.18);
+      --img-border:#444;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:"Josefin Slab",Georgia,serif;color:var(--ink-dark);background:var(--bg)}
+    img{max-width:100%;display:block} a{text-decoration:none;color:inherit}
+    .container{width:min(1160px,92vw);margin-inline:auto}
+
+    /* ============ NAV FIXA ============ */
+    .site-header{position:fixed;inset:0 0 auto 0;height:74px;z-index:20;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0))}
+    .nav{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 6px}
+    .brand,.menu a{font-family:"Jura",system-ui,sans-serif;font-weight:700;letter-spacing:.06em}
+    .brand{display:flex;align-items:center;gap:.6rem;color:#fff}
+    .mark{width:32px;height:32px;border-radius:8px;background:#f4f4f4a6;display:inline-block}
+    .menu{display:flex;gap:28px}
+    .menu a{padding:10px 12px;border-radius:10px;color:#f3f3f3}
+    .menu a:hover{background:#ffffff22}
+
+    /* ============ TABS (MOSTRA 1 SECÇÃO) ============ */
+    /* Anchors invisíveis que recebem o :target */
+    .tab-anchor{position:absolute;inset:auto auto auto auto;width:0;height:0;overflow:hidden}
+    /* Container das páginas */
+    .pages{padding-top:74px} /* espaço do header */
+    .page{display:none}
+    /* Regras de exibição por target */
+    #home:target ~ .pages #page-home{display:block}
+    #acomodacao:target ~ .pages #page-acom{display:block}
+    #locais:target ~ .pages #page-locais{display:block}
+    #blog:target ~ .pages #page-blog{display:block}
+    #contatos:target ~ .pages #page-contatos{display:block}
+
+    /* ============ HERO / BLOCOS (reaproveitado) ============ */
+    .hero{position:relative;min-height:88vh;display:grid;place-items:center;color:#fff}
+    .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.75)}
+    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55) 70%,rgba(0,0,0,.4))}
+    .hero-title{position:relative;margin:0;font-family:"Jura",system-ui,sans-serif;font-weight:700;font-size:clamp(2.4rem,5vw,5rem);letter-spacing:.18em;text-transform:uppercase;padding:.25rem .6rem;border:2px solid #fff;border-radius:8px;backdrop-filter:blur(2px)}
+    .scroll-down{position:absolute;right:18px;bottom:18px;width:42px;height:42px;border-radius:999px;display:grid;place-items:center;background:#000000a6;border:1px solid #ffffff2e;color:white}
+
+    .section{padding:56px 0}
+    .grid{display:grid;gap:22px;align-items:stretch}
+    .cols-2{grid-template-columns:1fr 1fr}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .center{align-items:center}
+    .uneven{grid-template-columns:3fr 2fr}
+    .span-2{grid-column:span 2}.span-3{grid-column:span 3}
+    @media (max-width:900px){.cols-3,.cols-2,.uneven{grid-template-columns:1fr}.span-2,.span-3{grid-column:auto}}
+
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .no-pad{padding:0;overflow:hidden}
+    .card h3{margin:.2rem 0 .6rem;font-family:"Jura",system-ui,sans-serif}
+    .bullets{padding-left:18px;margin:0}
+    .deco{position:absolute;right:12px;bottom:12px;width:16px;height:16px;border:2px solid #000;border-radius:2px;opacity:.5}
+    .callout-dark{background:#0e0f10;color:#fff;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px}
+    .cta-beige{background:var(--gold-25);display:flex;flex-direction:column;justify-content:center;gap:12px}
+    .tag{position:absolute;left:12px;bottom:12px;padding:.3rem .6rem;border-radius:999px;font-weight:700;font-family:"Jura",system-ui,sans-serif}
+    .tag-dark{background:#000c;color:#fff}
+    .img-framed{border:1px solid var(--img-border);border-radius:2px}
+
+    .section-title{margin:0 0 12px;font-family:"Jura",system-ui,sans-serif}
+    .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .card-acom{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+    .card-acom img{width:100%;height:180px;object-fit:cover;border:1px solid var(--img-border);border-radius:2px}
+    .card-acom .card-body{padding:14px}
+    .card-acom .price{color:#6b6f73;margin:.2rem 0 .6rem}
+    .card-acom ul{padding-left:18px;margin:.4rem 0 .6rem}
+    .card-acom a.info{display:inline-block;margin-top:6px}
+
+    /* Locais */
+    #page-locais{background:#D9D9D9}
+    #page-locais .panel{background:#fff;border-color:#dadada}
+    .form-selects{display:grid;gap:12px;max-width:420px;margin:auto}
+    .form-selects label{display:grid;gap:6px}
+    .form-selects select{padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff}
+    .mapbox{padding:14px;box-shadow:var(--shadow)}
+    .accent-chip{background:var(--gold-25);padding:.35rem .7rem;border-radius:999px;font-weight:700;font-family:"Jura",system-ui,sans-serif}
+
+    /* Contatos */
+    .contacts-wrap{position:relative;min-height:540px;display:grid;grid-template-columns:minmax(320px,420px) 1fr;gap:24px;align-items:center}
+    .contacts-bg{position:absolute;inset:0;z-index:-2}
+    .contacts-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.5)}
+    .contacts-bg .ov{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+    .form-float{background:#0a0a0a;border-radius:26px;padding:22px;border:1px solid #222;box-shadow:0 8px 24px rgba(0,0,0,.5);color:#fff}
+    .form-float label{display:block;margin:8px 0 6px;color:#d7d7d7;font-family:"Jura",system-ui,sans-serif}
+    .form-float input,.form-float textarea{width:100%;padding:12px;border-radius:12px;border:none;background:#1b1b1b;color:#fff;outline:1px solid #2a2a2a;font-family:inherit}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 18px;border-radius:999px;border:1.5px solid #ffffff66;background:transparent;color:#fff;font-weight:700;font-family:"Jura",system-ui,sans-serif}
+    .btn-filled{background:var(--cta);border:1px solid #0000;color:#fff}
+    .quote{font-family:"Jura",system-ui,sans-serif;font-weight:700;font-size:25px;line-height:118%;color:#fff;max-width:520px;text-align:center}
+    .quote small{display:block;margin-top:6px;font-size:20px;line-height:118%;color:#fff;font-family:"Jura",system-ui,sans-serif}
+
+    /* Footer */
+    .site-footer{background:var(--header);color:#ddd;padding:34px 0}
+    .footer-content{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+    /* Modais CSS-only */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50}
+    .modal:target{display:flex}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+    .modal-dialog{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:16px;max-width:520px;width:92%}
+    .modal--small .modal-dialog{max-width:360px}
+    .modal-close{position:absolute;right:10px;top:8px;text-decoration:none;color:#333;font-size:22px;font-family:"Jura",system-ui,sans-serif}
+    .modal-img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid var(--img-border)}
+    .modal-actions{margin-top:12px;display:flex;justify-content:flex-end}
+    #enviado:target .modal-backdrop{background:rgba(255,255,255,.43)}

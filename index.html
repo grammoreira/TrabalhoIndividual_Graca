@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Living Around — One Page (tabs)</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;700&family=Josefin+Slab:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold-25: rgba(180,146,44,.25); /* #B49B2C 25% */
+      --olive:#686931;
+      --ink-dark:#1E1E1E;
+      --bg:var(--gold-25);
+      --panel:#fff; --line:#dcd6c2; --muted:#5c5f63;
+      --header:#ffffff; --cta:var(--olive); --cta-ink:#fff;
+      --radius:18px; --shadow:0 12px 28px rgba(0,0,0,.18);
+      --img-border:#444;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:"Josefin Slab",Georgia,serif;color:var(--ink-dark);background:var(--bg);scroll-behavior:smooth}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1160px,92vw);margin-inline:auto}
+
+    /* ===== HEADER (tipografia Figma) ===== */
+    .site-header{
+      position:fixed; inset:0 0 auto 0; height:74px; z-index:20;
+      background:var(--header); border-bottom:1px solid #e9e9e9;
+    }
+    .nav{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 6px}
+    .brand{display:flex;align-items:center;gap:.6rem;color:#000;font-family:"Jura",system-ui,sans-serif;font-weight:700;letter-spacing:.06em}
+    .mark{width:32px;height:32px;border-radius:8px;background:#00000010;display:inline-block}
+    .menu{display:flex;gap:28px}
+    .menu a{
+      font-family:"Jura",system-ui,sans-serif; font-weight:700;
+      font-size:25px; line-height:30px; color:#000;
+      padding:8px; border-radius:8px;
+    }
+    .menu a:hover{background:#0000000d}
+
+    /* ===== TABS ===== */
+    .tab-anchor{position:absolute;width:0;height:0;overflow:hidden}
+    .pages{padding-top:74px}
+    .page{display:none}
+    #home:target ~ .pages #page-home{display:block}
+    #acomodacao:target ~ .pages #page-acom{display:block}
+    #locais:target ~ .pages #page-locais{display:block}
+    #blog:target ~ .pages #page-blog{display:block}
+    #contatos:target ~ .pages #page-contatos{display:block}
+
+    /* ===== HERO (imagem 1466×816; título 85px) ===== */
+    .hero{position:relative;min-height:72vh;display:grid;place-items:center;color:#fff}
+    @media (min-width:1200px){ .hero{min-height:816px} }
+    .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.75)}
+    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55) 70%,rgba(0,0,0,.4))}
+    .hero-title{
+      position:relative;margin:0;
+      font-family:"Josefin Slab", Georgia, serif;font-weight:700;
+      font-size:clamp(36px,7vw,85px); line-height:1.0; color:#fff;
+      padding:.35rem .8rem;border:2px solid #fff;border-radius:8px;backdrop-filter:blur(2px)
+    }
+    .scroll-down{position:absolute;right:18px;bottom:18px;width:42px;height:42px;border-radius:999px;display:grid;place-items:center;background:#000000a6;border:1px solid #ffffff2e;color:white}
+
+    /* ===== HOME — SECTION “hero” (Figma: 1440×569) ===== */
+    .section-hero-next{
+      position:relative;
+      display:grid; align-items:center;
+      padding:32px 0;
+    }
+    @media (min-width:1200px){ .section-hero-next{min-height:569px} }
+
+    .section-hero-next .grid{
+      display:grid; gap:22px;
+      grid-template-columns: 1.2fr 1fr; /* ligeiro peso à esquerda como no mock */
+      align-items:center;
+    }
+    @media (max-width:900px){
+      .section-hero-next .grid{grid-template-columns:1fr}
+    }
+
+    /* Texto esquerda — Jura Regular 43px / 118% / letter-spacing 20% */
+    .slogan{
+      font-family:"Jura", system-ui, sans-serif;
+      font-weight:400;
+      font-size:clamp(26px,4.5vw,43px);
+      line-height:1.18;
+      letter-spacing:.2em;   /* 20% do Figma */
+      margin:0;
+    }
+
+    /* Painel “Trabalhos Remotos” (direita) */
+    .jobs{
+      position:relative;
+      background:#fff;border:1px solid var(--line);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:24px 24px 28px;
+    }
+    .jobs-title{
+      margin:0 0 8px;
+      font-family:"Jura",system-ui,sans-serif;
+      font-weight:700; font-size:30px; line-height:1.18; color:#000;
+    }
+    .jobs-list{
+      display:grid; grid-template-columns:1fr 1fr; gap:18px 30px;
+      margin-top:12px;
+    }
+    .jobs-list ul{list-style:none; padding:0; margin:0}
+    .jobs-list li{
+      font-family:"Jura",system-ui,sans-serif;
+      font-weight:700; font-size:20px; line-height:1.18; color:#000;
+      margin:.25rem 0;
+    }
+
+    /* Linhas decorativas (aproximação responsiva dos ângulos/espessuras do Figma) */
+    .jobs-decos{pointer-events:none}
+    .line{position:absolute;background:#000}
+    /* vertical longa (Figma: 345px, 1px, -90°) */
+    .line--v{
+      width:1px;height:345px; left:50%; top:18%;
+      transform:translateX(-50%);
+      opacity:.9;
+    }
+    /* pequenas grossas (50×10) com rotações */
+    .line--r1{width:50px;height:10px; right:16px; top:20px; transform:rotate(1.2deg)}
+    .line--r2{width:50px;height:10px; right:34px; top:60px; transform:rotate(-88.8deg)}
+    .line--r3{width:50px;height:10px; left:22px; top:28px; transform:rotate(90deg)}
+
+    @media (max-width:900px){
+      .line{display:none} /* escondemos as linhas no mobile para não poluir */
+    }
+
+    /* ===== OUTRAS SECÇÕES DA HOME (já alinhadas com Figma em passos anteriores) ===== */
+    #home-acom.section-acom{
+      display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:stretch;
+      padding:56px 0;
+    }
+    @media (min-width:1200px){ #home-acom.section-acom{min-height:515px} }
+    #home-acom .media{border:1px solid var(--img-border);border-radius:2px;overflow:hidden}
+    #home-acom .media img{width:100%;height:100%;object-fit:cover}
+    #home-acom .callout{background:#0e0f10;color:#fff;border-radius:var(--radius);border:1px solid #222;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:24px}
+    #home-acom .callout h3{font-family:"Jura",system-ui,sans-serif;margin:0}
+    #home-acom .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 18px;border-radius:999px;border:1.5px solid #ffffff33;background:var(--cta);color:#fff;font-weight:700;font-family:"Jura",system-ui,sans-serif}
+
+    #home-locais.section-locais{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:0; overflow:hidden}
+    @media (min-width:1200px){ #home-locais.section-locais{min-height:541px} }
+    #home-locais .col{min-height:360px}
+    #home-locais .col-left{background:var(--gold-25); display:flex; align-items:center; justify-content:center; padding:24px}
+    #home-locais .col-left .inner{max-width:520px; text-align:center; display:flex; flex-direction:column; gap:12px}
+    #home-locais .col-left h3{font-family:"Jura",system-ui,sans-serif;margin:0}
+    #home-locais .col-left .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 18px;border-radius:999px;background:var(--olive);color:#fff;border:0;font-family:"Jura",system-ui,sans-serif;font-weight:700}
+    #home-locais .col-right{position:relative}
+    #home-locais .col-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    @media (max-width:900px){ #home-acom.section-acom, #home-locais.section-locais {grid-template-columns:1fr} #home-locais .col-right{min-height:300px} }
+
+    .section-blog{position:relative;display:grid;place-items:center;min-height:60vh;overflow:hidden}
+    @media (min-width:1200px){ .section-blog{min-height:690.51px} }
+    .section-blog .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .section-blog::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.18),rgba(0,0,0,.18))}
+    .section-blog .inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
+    .blog-btn{width:309px;height:77px;border-radius:35px;background:#1E1E1E;display:flex;align-items:center;justify-content:center;font-family:"Jura",system-ui,sans-serif;font-weight:700;font-size:25px;color:#fff;border:0;transition:transform .15s,filter .15s}
+    .blog-btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+
+    /* ===== PÁGINAS (resto igual) ===== */
+    #page-locais{background:#D9D9D9}
+    #page-locais .panel{background:#fff;border-color:#dadada}
+    .form-selects{display:grid;gap:12px;max-width:420px;margin:auto}
+    .form-selects label{display:grid;gap:6px}
+    .form-selects select{padding:10px;border-radius:10px;border:1px solid var(--line);background:#fff}
+    .mapbox{padding:14px;box-shadow:var(--shadow)}
+    .accent-chip{background:var(--gold-25);padding:.35rem .7rem;border-radius:999px;font-weight:700;font-family:"Jura",system-ui,sans-serif}
+
+    .contacts-wrap{position:relative;min-height:540px;display:grid;grid-template-columns:minmax(320px,420px) 1fr;gap:24px;align-items:center}
+    .contacts-bg{position:absolute;inset:0;z-index:-2}
+    .contacts-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.5)}
+    .contacts-bg .ov{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+    .form-float{background:#0a0a0a;border-radius:26px;padding:22px;border:1px solid #222;box-shadow:0 8px 24px rgba(0,0,0,.5);color:#fff}
+    .form-float label{display:block;margin:8px 0 6px;color:#d7d7d7;font-family:"Jura",system-ui,sans-serif}
+    .form-float input,.form-float textarea{width:100%;padding:12px;border-radius:12px;border:none;background:#1b1b1b;color:#fff;outline:1px solid #2a2a2a;font-family:inherit}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 18px;border-radius:999px;border:1.5px solid #ffffff66;background:transparent;color:#fff;font-weight:700;font-family:"Jura",system-ui,sans-serif}
+    .btn-filled{background:var(--cta);border:1px solid #0000;color:#fff}
+    .quote{font-family:"Jura",system-ui,sans-serif;font-weight:700;font-size:25px;line-height:118%;color:#fff;max-width:520px;text-align:center}
+    .quote small{display:block;margin-top:6px;font-size:20px;line-height:118%;color:#fff;font-family:"Jura",system-ui,sans-serif}
+
+    .site-footer {background:#000; color:#fff; padding:34px 0; min-height:266px; display:flex; align-items:center}
+    .footer-content{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;gap:18px;text-align:center}
+    .footer-title{font-family:"Jura",system-ui,sans-serif;font-size:30px;font-weight:700;letter-spacing:.05em}
+    .social{display:flex;gap:26px}
+    .social-icon svg{width:58px;height:57px;opacity:.4;transition:opacity .3s}
+    .social-icon:hover svg{opacity:1}
+    .footer-copy{font-family:"Jura",system-ui,sans-serif;font-size:15px;font-weight:700;margin-top:12px}
+
+    .scroll-top{
+      position:fixed; bottom:60px; right:60px; width:58px; height:58px; border-radius:50%;
+      border:3px solid #000; display:grid; place-items:center; background:#fff; text-decoration:none;
+      z-index:100; transition:transform .2s;
+    }
+    .scroll-top:hover{transform:scale(1.05)}
+    .scroll-top svg path{fill:#000;stroke:#000;stroke-width:1px}
+
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50}
+    .modal:target{display:flex}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+    .modal-dialog{position:relative;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:16px;max-width:520px;width:92%}
+    .modal--small .modal-dialog{max-width:360px}
+    .modal-close{position:absolute;right:10px;top:8px;text-decoration:none;color:#333;font-size:22px;font-family:"Jura",system-ui,sans-serif}
+    .modal-img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid var(--img-border)}
+    .modal-actions{margin-top:12px;display:flex;justify-content:flex-end}
+    #enviado:target .modal-backdrop{background:rgba(255,255,255,.43)}
+  </style>
+</head>
+<body>
+
+  <!-- Anchors das tabs -->
+  <span id="home" class="tab-anchor"></span>
+  <span id="acomodacao" class="tab-anchor"></span>
+  <span id="locais" class="tab-anchor"></span>
+  <span id="blog" class="tab-anchor"></span>
+  <span id="contatos" class="tab-anchor"></span>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home"><span class="mark"></span> LIVING AROUND</a>
+      <nav class="menu">
+        <a href="#home-acom">Acomodação</a>
+        <a href="#home-locais">Locais</a>
+        <a href="#home-blog">Blog</a>
+        <a href="#contatos">Contatos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pages">
+    <!-- HOME -->
+    <section id="page-home" class="page">
+      <!-- HERO -->
+      <section class="hero">
+        <img class="bg" src="Imagens/Hero (estrada).png" alt="">
+        <div class="overlay"></div>
+        <h1 class="hero-title">LIVING AROUND</h1>
+        <a class="scroll-down" href="#home">↓</a>
+      </section>
+
+      <!-- SECTION hero (Figma) -->
+      <section class="section-hero-next">
+        <div class="container grid">
+          <div>
+            <h2 class="slogan">Viva livre, trabalhe de qualquer lugar, descubra o mundo.</h2>
+          </div>
+
+          <aside class="jobs">
+            <h3 class="jobs-title">Trabalhos Remotos</h3>
+
+            <div class="jobs-list">
+              <ul>
+                <li>Indeed</li>
+                <li>LinkedIn</li>
+                <li>JobRemote</li>
+                <li>GoogleJobs</li>
+              </ul>
+              <ul>
+                <li>Indeed</li>
+                <li>LinkedIn</li>
+                <li>JobRemote</li>
+                <li>GoogleJobs</li>
+              </ul>
+            </div>
+
+            <!-- decorações -->
+            <div class="jobs-decos">
+              <span class="line line--v"></span>
+              <span class="line line--r1"></span>
+              <span class="line line--r2"></span>
+              <span class="line line--r3"></span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ACOMODAÇÃO (515px) -->
+      <section id="home-acom" class="section-acom container">
+        <figure class="media"><img src="Imagens/pão de forma.png" alt="Van"></figure>
+        <div class="callout">
+          <h3>Descubra o seu novo escritório</h3>
+          <a href="#acomodacao" class="btn">Descobrir</a>
+        </div>
+      </section>
+
+      <!-- LOCAIS (720×541 + 720×541) -->
+      <section id="home-locais" class="section-locais">
+        <div class="col col-left">
+          <div class="inner">
+            <h3>Temos destinos especiais para você</h3>
+            <a class="btn" href="#locais">Explorar</a>
+          </div>
+        </div>
+        <div class="col col-right">
+          <img src="Imagens/destinos especiais para voce.png" alt="Estrada entre árvores">
+        </div>
+      </section>
+
+      <!-- BLOG -->
+      <section id="home-blog" class="section-blog" aria-label="Blog">
+        <img class="bg" src="Imagens/ultima imagem (blog).png" alt="Mesa com portátil e caderno">
+        <div class="inner"><a class="blog-btn" href="#blog">BLOG</a></div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
+        <div class="container footer-content">
+          <strong class="footer-title">LIVING AROUND</strong>
+          <div class="social">
+            <a href="#" aria-label="Facebook" class="social-icon">
+              <svg width="58" height="57" viewBox="0 0 58 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.4" d="M36.7 9H31c-6.7 0-11.3 4.3-11.3 11v4.9h-5.7v7.8h5.7V48h8.6V32.7h6.8l1-7.8h-7.8v-4.3c0-2.3.7-3.8 4.1-3.8h4.5V9Z" fill="white"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="social-icon">
+              <svg width="58" height="57" viewBox="0 0 58 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.4" d="M29 15c-7.7 0-14 6.3-14 14s6.3 14 14 14 14-6.3 14-14-6.3-14-14-14zm0 23c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9zm14.6-24.3c0 1.8-1.4 3.3-3.3 3.3s-3.3-1.4-3.3-3.3 1.4-3.3 3.3-3.3 3.3 1.4 3.3 3.3z" fill="white"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="X" class="social-icon">
+              <svg width="58" height="57" viewBox="0 0 58 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.4" d="M40.8 16H35l-6.1 7.2L22.8 16h-5.5l7.6 9.1-8.6 10.2h5.9l5.8-6.8 5.4 6.8h5.8l-8.3-10.1L40.8 16Z" fill="white"/>
+              </svg>
+            </a>
+          </div>
+          <p class="footer-copy">Power by Cesae Digital</p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ABAS (mantêm-se) -->
+    <section id="page-acom" class="page"><section class="section"><div class="container panel"><h2 class="section-title">Acomodação</h2><p>Conteúdo em breve.</p></div></section></section>
+    <section id="page-locais" class="page"><section class="section"><div class="container panel"><h2 class="section-title">Locais</h2><p>Conteúdo em breve.</p></div></section></section>
+    <section id="page-blog" class="page"><section class="section"><div class="container panel"><h2 class="section-title">Blog</h2><p>Conteúdo em breve.</p></div></section></section>
+    <section id="page-contatos" class="page">
+      <section class="section">
+        <div class="container contacts-wrap">
+          <div class="contacts-bg"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1920&auto=format&fit=crop" alt=""><div class="ov"></div></div>
+          <form class="form-float" action="#enviado" method="get">
+            <label>Nome:</label><input required type="text" name="nome" placeholder="Seu nome">
+            <label>Email:</label><input required type="email" name="email" placeholder="seu@email.com">
+            <label>Mensagem:</label><textarea required rows="5" name="mensagem" placeholder="Escreva aqui..."></textarea>
+            <p style="text-align:center;margin:.6rem 0 0"><button class="btn" type="submit">Enviar</button></p>
+          </form>
+          <blockquote class="quote">“Viajar é descobrir que todos estão errados sobre outros países.”<small>— Aldous Huxley</small></blockquote>
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- ALERTA -->
+  <div id="enviado" class="modal modal--small"><a class="modal-backdrop" href="#contatos"></a>
+    <div class="modal-dialog"><a class="modal-close" href="#contatos">×</a>
+      <p style="font-family:'Jura';text-align:center">Seu formulário foi enviado com sucesso!</p>
+      <div class="modal-actions" style="justify-content:center"><a class="btn-filled" href="#contatos">Ok</a></div>
+    </div>
+  </div>
+
+  <!-- voltar ao topo -->
+  <a href="#home" class="scroll-top" aria-label="Voltar ao topo">
+    <svg width="29.94" height="35.08" viewBox="0 0 30 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 0L0 35H30L15 0Z" fill="#000000"/>
+    </svg>
+  </a>
+
+  <script>
+    if(!location.hash) location.hash = '#home';
+  </script>
+</body>
+</html>
