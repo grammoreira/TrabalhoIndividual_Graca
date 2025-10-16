@@ -1,281 +1,179 @@
 <!doctype html>
 <html lang="pt">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Living Around — One Page</title>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Living Around — One Page</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;700&family=Josefin+Slab:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;700&family=Josefin+Slab:wght@700&display=swap" rel="stylesheet">
 
-<style>
-  :root{
-    --gold-25: rgba(180,146,44,.25); /* #B49B2C 25% */
-    --olive:#686931;
-    --ink:#1E1E1E;
-    --line:#bfb59c;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;scroll-behavior:smooth}
-  body{font-family:"Josefin Slab",Georgia,serif;color:var(--ink);background:var(--gold-25)}
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
-  .container{width:min(1160px,92vw);margin-inline:auto}
-
-  /* HEADER */
-  .site-header{position:fixed;inset:0 0 auto 0;height:74px;z-index:30;background:#fff;border-bottom:1px solid #e9e9e9}
-  .nav{height:74px;display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;align-items:center;gap:.6rem;font:700 18px "Jura",system-ui,sans-serif}
-  .mark{width:32px;height:32px;border-radius:8px;background:#0001}
-  .menu{display:flex;gap:28px}
-  .menu a{font:700 25px/30px "Jura",system-ui,sans-serif;padding:8px;border-radius:8px}
-  .menu a:hover{background:#0001}
-
-  /* TABS (exibe só a página alvo) */
-  .tab-anchor{position:absolute;width:0;height:0;overflow:hidden}
-  .pages{padding-top:74px}
-  .page{display:none}
-  #home:target ~ .pages #page-home{display:block}
-  #acomodacao:target ~ .pages #page-acom{display:block}
-  #locais:target ~ .pages #page-locais{display:block}
-  #blog:target ~ .pages #page-blog{display:block}
-  #contatos:target ~ .pages #page-contatos{display:block}
-
-  /* ==== HOME ==== */
-  .hero{position:relative;display:grid;place-items:center;color:#fff}
-  @media (min-width:1200px){ .hero{min-height:816px} }
-  .hero .bg{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.75)}
-  .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55) 70%,rgba(0,0,0,.4))}
-  .hero-title{position:relative;margin:0;border:2px solid #fff;border-radius:8px;padding:.35rem .8rem;font:700 clamp(36px,7vw,85px)/1 "Josefin Slab",serif}
-
-  .section-hero-next{background:var(--gold-25)}
-  .section-hero-next .wrap{position:relative;width:min(1160px,92vw);margin:auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:40px 0 44px}
-  @media (max-width:980px){ .section-hero-next .wrap{grid-template-columns:1fr;gap:26px} }
-  .v-divider{position:absolute;left:50%;top:12%;width:1px;height:76%;background:#bfb59c;transform:translateX(-50%)}
-  @media (max-width:980px){.v-divider{display:none}}
-  .intro{padding-left:87px}
-  .slogan{max-width:575px;margin:0;font-family:"Jura",system-ui,sans-serif;font-weight:400;font-size:clamp(26px,4.5vw,43px);line-height:1.18;letter-spacing:.2em}
-  .slogan .olive{color:var(--olive);font-weight:700}
-  .jobs{position:relative;padding:10px 20px 6px 24px}
-  .jobs-title{margin:0 0 12px;font:700 clamp(22px,3.2vw,28px)/1.22 "Jura",system-ui,sans-serif;letter-spacing:.06em}
-  .jobs-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 48px}
-  .jobs-list ul{margin:0;padding:0;list-style:none}
-  .jobs-list li{font:700 clamp(16px,2.2vw,20px)/1.2 "Jura",system-ui,sans-serif;margin:.22rem 0}
-  .corner{position:absolute;width:34px;height:34px;border:10px solid #000}
-  .corner.tl{left:-4px;top:4px;border-right:none;border-bottom:none}
-  .corner.br{right:-4px;bottom:4px;border-left:none;border-top:none}
-
-  #home-acom{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:515px}
-  #home-acom .media{position:relative}
-  #home-acom .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  #home-acom .callout{background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px;padding:24px}
-  #home-acom .callout h3{font-family:"Jura",system-ui,sans-serif;font-weight:700;font-size:clamp(22px,2.6vw,26px);line-height:1.25;margin:0}
-  .btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:14px 34px;border:2px solid #fff;border-radius:35px;background:transparent;color:#fff;font:700 16px "Jura",system-ui,sans-serif}
-  @media (max-width:900px){ #home-acom{grid-template-columns:1fr} #home-acom .media{min-height:260px} }
-
-  #home-locais{display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden}
-  #home-locais .col-left{background:var(--gold-25);display:flex;align-items:center;justify-content:center;padding:24px}
-  #home-locais .col-left .inner{max-width:520px;text-align:center;display:flex;flex-direction:column;gap:12px}
-  #home-locais .col-left h3{font:700 28px "Jura",system-ui,sans-serif;margin:0}
-  #home-locais .col-right{position:relative;min-height:360px}
-  #home-locais .col-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  @media (max-width:900px){#home-locais{grid-template-columns:1fr}#home-locais .col-right{min-height:300px}}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 18px;border-radius:999px;background:#686931;border:0;color:#fff;font:700 16px "Jura",system-ui,sans-serif}
-
-  .section-blog{position:relative;display:grid;place-items:center;overflow:hidden}
-  @media (min-width:1200px){ .section-blog{min-height:690.51px} }
-  .section-blog .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .section-blog::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.18),rgba(0,0,0,.18))}
-  .section-blog .inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
-  .blog-btn{width:309px;height:77px;border-radius:35px;background:#1E1E1E;display:flex;align-items:center;justify-content:center;font:700 25px "Jura",system-ui,sans-serif;color:#fff;border:0}
-
-  /* FOOTER */
-  .site-footer{
-    background:#000;color:#fff;min-height:266px;display:flex;align-items:center;padding:34px 0;
-    border-top:4px solid #2b2b2b;border-bottom:4px solid #2b2b2b;
-  }
-  .footer-content{width:min(1160px,92vw);margin:auto;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
-  .footer-title{font:700 30px "Jura",system-ui,sans-serif;letter-spacing:.12em}
-  .social{display:flex;gap:20px}
-  .social-icon{width:58px;height:57px;border-radius:8px;background:rgba(255,255,255,.4);display:grid;place-items:center}
-  .social-icon svg{width:28px;height:28px}
-  .social-icon path{fill:#000}
-  .footer-copy{font:700 15px "Jura",system-ui,sans-serif;margin-top:6px}
-
-  /* BOTÃO TOPO */
-  .scroll-top{position:fixed;right:24px;bottom:24px;width:58px;height:58px;border-radius:50%;border:3px solid #000;background:#fff;display:grid;place-items:center;z-index:120}
-  .scroll-top svg{width:30px;height:36px}
-
-  /* ==== ACOMODAÇÃO (apenas quando #acomodacao está ativo) ==== */
-  #page-acom{background:var(--gold-25)}
-
-  .acom-hero{position:relative;min-height:360px}
-  .acom-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .acom-hero .title-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-  .acom-hero .band{position:absolute;left:0;right:0;height:86px;background:rgba(0,0,0,.45)}
-  .acom-hero h2{position:relative;z-index:2;margin:0;padding:0 16px;text-align:center;color:#fff;font:700 clamp(28px,5vw,42px) "Josefin Slab",serif;letter-spacing:.12em}
-  .acom-hero .accent{position:absolute;z-index:3;width:100%;max-width:min(1160px,92vw);height:6px;background:var(--olive);opacity:.95;top:50%;transform:translateY(-22px)}
-
-  .acom-wrap{padding:34px 0 60px}
-  .acom-grid{width:min(1160px,92vw);margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:34px}
-  @media (max-width:900px){.acom-grid{grid-template-columns:1fr}}
-
-  .acom-card{background:#E6E6E6;border-radius:35px;box-shadow:10px 10px 4px rgba(0,0,0,.25);border:1px solid #e1ded6;overflow:hidden;display:flex;flex-direction:column;min-height:660px}
-  .acom-card .img{padding:18px}
-  .acom-card .img img{width:100%;height:288px;object-fit:cover;border-radius:16px}
-  .acom-card .body{padding:0 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
-  .acom-card h3{font-family:"Jura",system-ui,sans-serif;margin:0;text-align:center}
-  .acom-card .price{color:#6b6f73;font-size:14px;margin:0;text-align:left}
-  .acom-card ul{margin:.2rem 0 .6rem;padding-left:18px}
-  .acom-card .more{margin-top:auto;text-align:center}
-  .acom-card .more a{font:700 14px "Jura",system-ui,sans-serif}
-
-
-</style>
+  <!-- CSS externo -->
+  
 </head>
 <body>
 
-<!-- ANCHORS DE ABA -->
-<span id="home" class="tab-anchor"></span>
-<span id="acomodacao" class="tab-anchor"></span>
-<span id="locais" class="tab-anchor"></span>
-<span id="blog" class="tab-anchor"></span>
-<span id="contatos" class="tab-anchor"></span>
+  <!-- ANCHORS -->
+  <span id="home" class="tab-anchor"></span>
+  <span id="acomodacao" class="tab-anchor"></span>
+  <span id="locais" class="tab-anchor"></span>
+  <span id="blog" class="tab-anchor"></span>
+  <span id="contatos" class="tab-anchor"></span>
 
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="#home"><span class="mark"></span> LIVING AROUND</a>
-    <nav class="menu">
-      <!-- Estes links mudam o hash (aba) -->
-      <a href="#acomodacao">Acomodação</a>
-      <a href="#locais">Locais</a>
-      <a href="#blog">Blog</a>
-      <a href="#contatos">Contatos</a>
-    </nav>
-  </div>
-</header>
-
-<main class="pages">
-  <!-- HOME — aparece só quando #home está ativo -->
-  <section id="page-home" class="page">
-    <section class="hero">
-      <img class="bg" src="Imagens/Hero (estrada).png" alt=""><div class="overlay"></div>
-      <h1 class="hero-title">LIVING AROUND</h1>
-    </section>
-
-    <section class="section-hero-next">
-      <div class="wrap">
-        <span class="v-divider"></span>
-        <div class="intro"><h2 class="slogan">Viva <span class="olive">livre</span>, trabalhe<br>de qualquer lugar,<br>descubra o <span class="olive">mundo</span>.</h2></div>
-        <aside class="jobs"><span class="corner tl"></span><h3 class="jobs-title">Trabalhos Remotos</h3>
-          <div class="jobs-list"><ul><li>Indeed</li><li>LinkedIn</li><li>JobRemote</li><li>GoogleJobs</li></ul><ul><li>Indeed</li><li>LinkedIn</li><li>JobRemote</li><li>GoogleJobs</li></ul></div>
-          <span class="corner br"></span>
-        </aside>
-      </div>
-    </section>
-
-    <section id="home-acom">
-      <figure class="media"><img src="Imagens/pão de forma.png" alt=""></figure>
-      <!-- este botão troca para a ABA de Acomodação -->
-      <div class="callout"><h3>Descubra o seu novo<br>escritório</h3><a class="btn-outline" href="#acomodacao">Descobrir</a></div>
-    </section>
-
-    <section id="home-locais">
-      <div class="col-left"><div class="inner"><h3>Temos destinos especiais para você</h3><a class="btn" href="#locais">Explorar</a></div></div>
-      <div class="col-right"><img src="Imagens/pexels-thatguycraig000-1546898.png" alt=""></div>
-    </section>
-
-    <section id="home-blog" class="section-blog">
-      <img class="bg" src="Imagens/pexels-thepaintedsquare-583848.png" alt="">
-      <div class="inner"><button class="blog-btn" type="button">BLOG</button></div>
-    </section>
-
-    <footer class="site-footer">
-      <div class="footer-content">
-        <strong class="footer-title">LIVING AROUND</strong>
-        <div class="social">
-          <a href="#" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M15 3h-2.6C8.9 3 7 4.8 7 8v2H5v3h2v8h3v-8h2.5l.5-3H10V8c0-.9.3-1.5 1.7-1.5H15V3z"/></svg></a>
-          <a href="#" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 1 0 12 7.3zm6-2.5a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0zM12 2C7.6 2 7.1 2 5.5 2.1 4 2.2 3 2.5 2.2 3.3 1.4 4.1 1.1 5.1 1 6.6 1 8.2 1 8.7 1 13s0 4.8.1 6.4c.1 1.5.4 2.5 1.2 3.3.8.8 1.8 1.1 3.3 1.2C7.1 24 7.6 24 12 24s4.8 0 6.4-.1c1.5-.1 2.5-.4 3.3-1.2.8-.8 1.1-1.8 1.2-3.3.1-1.6.1-2.1.1-6.4s0-4.8-.1-6.4c-.1-1.5-.4-2.5-1.2-3.3-.8-.8-1.8-1.1-3.3-1.2C16.8 2 16.3 2 12 2z"/></svg></a>
-          <a href="#" class="social-icon" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="none"><path d="M18 3h-2.2l-4 5L7.7 3H5l5 6.2L4 21h2.2l4.6-5.7L16.3 21H19l-5.6-7 4.6-5.6z"/></svg></a>
-        </div>
-        <p class="footer-copy">Power by Cesae Digital</p>
-      </div>
-    </footer>
-  </section>
-
-  <!-- ACOMODAÇÃO — só aparece com #acomodacao -->
-  <section id="page-acom" class="page">
-    <section class="acom-hero">
-      <img src="Imagens/acom-hero.jpg" alt="Banner Acomodação">
-      <div class="title-wrap">
-        <div class="band" aria-hidden="true"></div>
-        <h2>O SEU NOVO OFFICE</h2>
-            </div>
-    </section>
-
-    <section class="acom-wrap">
-      <div class="acom-grid">
-        <!-- 6 cards de exemplo -->
-        <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Hippie Ride</h3><p class="price">A partir de <strong>95€/dia</strong></p><ul><li>Espaço para 2</li><li>Cozinha compacta</li><li>Wi-Fi portátil</li><li>4G partilhado</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-        <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1451481454041-104482d8e284?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Harvest Ride</h3><p class="price">A partir de <strong>120€/dia</strong></p><ul><li>Espaço para 4</li><li>Cozinha completa</li><li>Painel solar</li><li>Cama de casal</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-        <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1560989424-231b84201c98?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Nomade Ride</h3><p class="price">A partir de <strong>100€/dia</strong></p><ul><li>Banho quente</li><li>Estação de trabalho</li><li>Climatização</li><li>Cama de casal</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-        <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1558985040-ed4d5029d8d1?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Family Ride</h3><p class="price">A partir de <strong>95€/dia</strong></p><ul><li>4 lugares</li><li>Beliches</li><li>Cozinha</li><li>WC químico</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-        <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1542282088-fe8426682b8f?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Surf Ride</h3><p class="price">A partir de <strong>85€/dia</strong></p><ul><li>Rack pranchas</li><li>Ducha exterior</li><li>Mini-cozinha</li><li>Frigorífico</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-        <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1580584128409-7d1ae4a78f22?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Cave Ride</h3><p class="price">A partir de <strong>90€/dia</strong></p><ul><li>Trailer compacto</li><li>Cama casal</li><li>Kitchenette</li><li>Ventilação</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-      </div>
-    </section>
-    <section id="page-acom" class="page">
-
-  <!-- FOOTER – só para a página ACOMODAÇÃO -->
-<footer class="site-footer">
-  <div class="footer-content">
-    <strong class="footer-title">LIVING AROUND</strong>
-
-    <div class="social">
-      <a href="#" class="social-icon" aria-label="Facebook">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M15 3h-2.6C8.9 3 7 4.8 7 8v2H5v3h2v8h3v-8h2.5l.5-3H10V8c0-.9.3-1.5 1.7-1.5H15V3z"/>
-        </svg>
-      </a>
-      <a href="#" class="social-icon" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 1 0 12 7.3zm6-2.5a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0zM12 2C7.6 2 7.1 2 5.5 2.1 4 2.2 3 2.5 2.2 3.3 1.4 4.1 1.1 5.1 1 6.6 1 8.2 1 8.7 1 13s0 4.8.1 6.4c.1 1.5.4 2.5 1.2 3.3.8.8 1.8 1.1 3.3 1.2C7.1 24 7.6 24 12 24s4.8 0 6.4-.1c1.5-.1 2.5-.4 3.3-1.2.8-.8 1.1-1.8 1.2-3.3.1-1.6.1-2.1.1-6.4s0-4.8-.1-6.4c-.1-1.5-.4-2.5-1.2-3.3-.8-.8-1.8-1.1-3.3-1.2C16.8 2 16.3 2 12 2z"/>
-        </svg>
-      </a>
-      <a href="#" class="social-icon" aria-label="X (Twitter)">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M18 3h-2.2l-4 5L7.7 3H5l5 6.2L4 21h2.2l4.6-5.7L16.3 21H19l-5.6-7 4.6-5.6z"/>
-        </svg>
-      </a>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home"><span class="mark"></span> LIVING AROUND</a>
+      <nav class="menu">
+        <a href="#acomodacao">Acomodação</a>
+        <a href="#locais">Locais</a>
+        <a href="#blog">Blog</a>
+        <a href="#contatos">Contatos</a>
+      </nav>
     </div>
+  </header>
 
-    <p class="footer-copy">Power by Cesae Digital</p>
-  </div>
-</footer>
->
-</section>
+  <main class="pages">
+    <!-- ============ HOME ============ -->
+    <section id="page-home" class="page">
+      <section class="hero">
+        <img class="bg" src="Imagens/Hero (estrada).png" alt=""><div class="overlay"></div>
+        <h1 class="hero-title">LIVING AROUND</h1>
+      </section>
 
-  </section>
+      <section class="section-hero-next">
+        <div class="wrap">
+          <span class="v-divider"></span>
+          <div class="intro">
+            <h2 class="slogan">
+              Viva <span class="olive">livre</span>, trabalhe<br>
+              de qualquer lugar,<br>
+              descubra o <span class="olive">mundo</span>.
+            </h2>
+          </div>
+          <aside class="jobs">
+            <span class="corner tl"></span>
+            <h3 class="jobs-title">Trabalhos Remotos</h3>
+            <div class="jobs-list">
+              <ul><li>Indeed</li><li>LinkedIn</li><li>JobRemote</li><li>GoogleJobs</li></ul>
+              <ul><li>Indeed</li><li>LinkedIn</li><li>JobRemote</li><li>GoogleJobs</li></ul>
+            </div>
+            <span class="corner br"></span>
+          </aside>
+        </div>
+      </section>
 
-  <!-- OUTRAS ABAS (placeholders) -->
-  <section id="page-locais" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Locais</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
-  <section id="page-blog" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Blog</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
-  <section id="page-contatos" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Contatos</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
-</main>
+      <section id="home-acom">
+        <figure class="media"><img src="Imagens/pão de forma.png" alt=""></figure>
+        <div class="callout">
+          <h3>Descubra o seu novo<br>escritório</h3>
+          <a class="btn-outline" href="#acomodacao">Descobrir</a>
+        </div>
+      </section>
 
-<!-- VOLTAR AO TOPO -->
-<a class="scroll-top" href="#home" aria-label="Voltar ao topo">
-  <svg viewBox="0 0 30 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15 0L0 35H30L15 0Z" fill="#000"/></svg>
-</a>
+      <section id="home-locais">
+        <div class="col-left">
+          <div class="inner">
+            <h3>Temos destinos especiais para você</h3>
+            <a class="btn" href="#locais">Explorar</a>
+          </div>
+        </div>
+        <div class="col-right">
+          <img src="Imagens/pexels-thatguycraig000-1546898.png" alt="">
+        </div>
+      </section>
 
-<script>
-  /* abre a HOME por omissão, garantindo que a Acomodação só aparece ao clicar */
-  if(!location.hash) location.hash = '#home';
-</script>
+      <section id="home-blog" class="section-blog">
+        <img class="bg" src="Imagens/pexels-thepaintedsquare-583848.png" alt="">
+        <div class="inner"><button class="blog-btn" type="button">BLOG</button></div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <strong class="footer-title">LIVING AROUND</strong>
+          <div class="social">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h-2.2C10.2 3 9 4.2 9 6.3V9H7v3h2v9h3v-9h2.3l.6-3H12V6.5c0-.9.3-1.5 1.6-1.5H15V3z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none"/>
+                <circle cx="12" cy="12" r="4.2" fill="none"/>
+                <circle cx="17.3" cy="6.7" r="1.2"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4l7.8 9.2L6 20h2.2l5.4-6.2L18 20h2l-6-7 5.6-6.8h-2.2l-4.8 5.8L8 4H4z"/>
+              </svg>
+            </a>
+          </div>
+          <p class="footer-copy">Power by Cesae Digital</p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ============ ACOMODAÇÃO ============ -->
+    <section id="page-acom" class="page">
+      <section class="acom-hero">
+        <img src="Imagens/acom-hero.jpg" alt="Banner Acomodação">
+        <div class="title-wrap">
+          <div class="band" aria-hidden="true"></div>
+          <h2>O SEU NOVO OFFICE</h2>
+        </div>
+      </section>
+
+      <section class="acom-wrap">
+        <div class="acom-grid">
+          <!-- 6 cards (exemplo) -->
+          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Hippie Ride</h3><p class="price">A partir de <strong>95€/dia</strong></p><ul><li>Espaço para 2</li><li>Cozinha compacta</li><li>Wi-Fi portátil</li><li>4G partilhado</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
+          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1451481454041-104482d8e284?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Harvest Ride</h3><p class="price">A partir de <strong>120€/dia</strong></p><ul><li>Espaço para 4</li><li>Cozinha completa</li><li>Painel solar</li><li>Cama de casal</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
+          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1560989424-231b84201c98?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Nomade Ride</h3><p class="price">A partir de <strong>100€/dia</strong></p><ul><li>Banho quente</li><li>Estação de trabalho</li><li>Climatização</li><li>Cama de casal</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
+          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1558985040-ed4d5029d8d1?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Family Ride</h3><p class="price">A partir de <strong>95€/dia</strong></p><ul><li>4 lugares</li><li>Beliches</li><li>Cozinha</li><li>WC químico</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
+          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1542282088-fe8426682b8f?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Surf Ride</h3><p class="price">A partir de <strong>85€/dia</strong></p><ul><li>Rack pranchas</li><li>Ducha exterior</li><li>Mini-cozinha</li><li>Frigorífico</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
+          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1580584128409-7d1ae4a78f22?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Cave Ride</h3><p class="price">A partir de <strong>90€/dia</strong></p><ul><li>Trailer compacto</li><li>Cama casal</li><li>Kitchenette</li><li>Ventilação</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
+        </div>
+      </section>
+
+      <!-- Footer específico da Acomodação -->
+      <footer class="footer--acom">
+        <div class="footer-content">
+          <strong class="footer-title">LIVING AROUND</strong>
+          <div class="social">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h-2.2C10.2 3 9 4.2 9 6.3V9H7v3h2v9h3v-9h2.3l.6-3H12V6.5c0-.9.3-1.5 1.6-1.5H15V3z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none"/>
+                <circle cx="12" cy="12" r="4.2" fill="none"/>
+                <circle cx="17.3" cy="6.7" r="1.2"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7.8 9.2L6 20h2.2l5.4-6.2L18 20h2l-6-7 5.6-6.8h-2.2l-4.8 5.8L8 4H4z"/></svg>
+            </a>
+          </div>
+          <p class="footer-copy">Power by Cesae Digital</p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- Placeholders -->
+    <section id="page-locais" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Locais</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
+    <section id="page-blog" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Blog</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
+    <section id="page-contatos" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Contatos</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
+  </main>
+
+  <!-- VOLTAR AO TOPO -->
+  <a class="scroll-top" href="#home" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 30 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15 0L0 35H30L15 0Z" fill="#000"/></svg>
+  </a>
+
+  <script>
+    if(!location.hash) location.hash = '#home';
+  </script>
 </body>
 </html>
-
-
-
-

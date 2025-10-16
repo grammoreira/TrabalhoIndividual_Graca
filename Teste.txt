@@ -1,0 +1,144 @@
+:root{
+  --gold-25: rgba(180,146,44,.25); /* #B49B2C 25% */
+  --olive:#686931;
+  --ink:#1E1E1E;
+  --line:#bfb59c;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;scroll-behavior:smooth}
+body{font-family:"Josefin Slab",Georgia,serif;color:var(--ink);background:var(--gold-25)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:min(1160px,92vw);margin-inline:auto}
+
+/* HEADER */
+.site-header{position:fixed;inset:0 0 auto 0;height:74px;z-index:30;background:#fff;border-bottom:1px solid #e9e9e9}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:.6rem;font:700 18px "Jura",system-ui,sans-serif}
+.mark{width:32px;height:32px;border-radius:8px;background:#0001}
+.menu{display:flex;gap:28px}
+.menu a{font:700 25px/30px "Jura",system-ui,sans-serif;padding:8px;border-radius:8px}
+.menu a:hover{background:#0001}
+
+/* TABS */
+.tab-anchor{position:absolute;width:0;height:0;overflow:hidden}
+.pages{padding-top:74px}
+.page{display:none}
+#home:target ~ .pages #page-home{display:block}
+#acomodacao:target ~ .pages #page-acom{display:block}
+#locais:target ~ .pages #page-locais{display:block}
+#blog:target ~ .pages #page-blog{display:block}
+#contatos:target ~ .pages #page-contatos{display:block}
+
+/* ===== HOME ===== */
+.hero{position:relative;display:grid;place-items:center;color:#fff}
+@media (min-width:1200px){ .hero{min-height:816px} }
+.hero .bg{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.75)}
+.hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55) 70%,rgba(0,0,0,.4))}
+.hero-title{position:relative;margin:0;border:2px solid #fff;border-radius:8px;padding:.35rem .8rem;font:700 clamp(36px,7vw,85px)/1 "Josefin Slab",serif}
+
+.section-hero-next{background:var(--gold-25)}
+.section-hero-next .wrap{position:relative;width:min(1160px,92vw);margin:auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:40px 0 44px}
+@media (max-width:980px){ .section-hero-next .wrap{grid-template-columns:1fr;gap:26px} }
+.v-divider{position:absolute;left:50%;top:12%;width:1px;height:76%;background:#bfb59c;transform:translateX(-50%)}
+@media (max-width:980px){.v-divider{display:none}}
+.intro{padding-left:87px}
+.slogan{max-width:575px;margin:0;font-family:"Jura",system-ui,sans-serif;font-weight:400;font-size:clamp(26px,4.5vw,43px);line-height:1.18;letter-spacing:.2em}
+.slogan .olive{color:var(--olive);font-weight:700}
+.jobs{position:relative;padding:10px 20px 6px 24px}
+.jobs-title{margin:0 0 12px;font:700 clamp(22px,3.2vw,28px)/1.22 "Jura",system-ui,sans-serif;letter-spacing:.06em}
+.jobs-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 48px}
+.jobs-list ul{margin:0;padding:0;list-style:none}
+.jobs-list li{font:700 clamp(16px,2.2vw,20px)/1.2 "Jura",system-ui,sans-serif;margin:.22rem 0}
+.corner{position:absolute;width:34px;height:34px;border:10px solid #000}
+.corner.tl{left:-4px;top:4px;border-right:none;border-bottom:none}
+.corner.br{right:-4px;bottom:4px;border-left:none;border-top:none}
+
+#home-acom{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:515px}
+#home-acom .media{position:relative}
+#home-acom .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#home-acom .callout{background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px;padding:24px}
+#home-acom .callout h3{font-family:"Jura",system-ui,sans-serif;font-weight:700;font-size:clamp(22px,2.6vw,26px);line-height:1.25;margin:0}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:14px 34px;border:2px solid #fff;border-radius:35px;background:transparent;color:#fff;font:700 16px "Jura",system-ui,sans-serif}
+@media (max-width:900px){ #home-acom{grid-template-columns:1fr} #home-acom .media{min-height:260px} }
+
+#home-locais{display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden}
+#home-locais .col-left{background:var(--gold-25);display:flex;align-items:center;justify-content:center;padding:24px}
+#home-locais .col-left .inner{max-width:520px;text-align:center;display:flex;flex-direction:column;gap:12px}
+#home-locais .col-left h3{font:700 28px "Jura",system-ui,sans-serif;margin:0}
+#home-locais .col-right{position:relative;min-height:360px}
+#home-locais .col-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (max-width:900px){#home-locais{grid-template-columns:1fr}#home-locais .col-right{min-height:300px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:12px 18px;border-radius:999px;background:#686931;border:0;color:#fff;font:700 16px "Jura",system-ui,sans-serif}
+
+.section-blog{position:relative;display:grid;place-items:center;overflow:hidden}
+@media (min-width:1200px){ .section-blog{min-height:690.51px} }
+.section-blog .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.section-blog::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.18),rgba(0,0,0,.18))}
+.section-blog .inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px}
+.blog-btn{width:309px;height:77px;border-radius:35px;background:#1E1E1E;display:flex;align-items:center;justify-content:center;font:700 25px "Jura",system-ui,sans-serif;color:#fff;border:0}
+
+/* FOOTER (HOME) com moldura */
+.site-footer{
+  background:#000;color:#fff;min-height:266px;display:flex;align-items:center;padding:34px 0;
+  border-top:4px solid #2b2b2b;border-bottom:4px solid #2b2b2b;
+}
+.footer-content{width:min(1160px,92vw);margin:auto;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.footer-title{font:700 30px "Jura",system-ui,sans-serif;letter-spacing:.12em}
+.social{display:flex;gap:28px}
+.social-icon{width:76px;height:76px;border-radius:12px;background:#6E6E6E;display:grid;place-items:center}
+.social-icon svg{width:44px;height:44px}
+.social-icon path,.social-icon rect,.social-icon circle{fill:#1E1E1E;stroke:#1E1E1E;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.footer-copy{font:700 15px "Jura",system-ui,sans-serif;margin-top:6px}
+
+/* BOTÃO TOP */
+.scroll-top{position:fixed;right:24px;bottom:24px;width:58px;height:58px;border-radius:50%;border:3px solid #000;background:#fff;display:grid;place-items:center;z-index:120}
+.scroll-top svg{width:30px;height:36px}
+
+/* ===== ACOMODAÇÃO ===== */
+#page-acom{background:var(--gold-25)}
+
+.acom-hero{position:relative;min-height:360px}
+.acom-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.acom-hero .title-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.acom-hero .band{position:absolute;left:0;right:0;height:86px;background:rgba(0,0,0,.45)}
+.acom-hero h2{position:relative;z-index:2;margin:0;padding:0 16px;text-align:center;color:#fff;font:700 clamp(28px,5vw,42px) "Josefin Slab",serif;letter-spacing:.12em}
+
+.acom-wrap{padding:34px 0 0}
+.acom-grid{width:min(1160px,92vw);margin:0 auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:34px}
+@media (max-width:900px){.acom-grid{grid-template-columns:1fr}}
+
+.acom-card{background:#E6E6E6;border-radius:35px;box-shadow:10px 10px 4px rgba(0,0,0,.25);border:1px solid #e1ded6;overflow:hidden;display:flex;flex-direction:column;min-height:660px}
+.acom-card .img{padding:18px}
+.acom-card .img img{width:100%;height:288px;object-fit:cover;border-radius:16px}
+.acom-card .body{padding:0 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.acom-card h3{font-family:"Jura",system-ui,sans-serif;margin:0;text-align:center}
+.acom-card .price{color:#6b6f73;font-size:14px;margin:0;text-align:left}
+.acom-card ul{margin:.2rem 0 .6rem;padding-left:18px}
+.acom-card .more{margin-top:auto;text-align:center}
+.acom-card .more a{font:700 14px "Jura",system-ui,sans-serif}
+
+/* Footer específico da ACOMODAÇÃO (sem molduras; medidas exatas) */
+#page-acom .footer--acom{
+  height:266px; min-height:266px;
+  background:#000; color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  padding:0; margin-top:34px; border:none;
+}
+#page-acom .footer--acom .footer-content{
+  width:min(1160px,92vw); margin:auto;
+  display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center;
+}
+#page-acom .footer--acom .footer-title{ font:700 30px "Jura",system-ui,sans-serif; letter-spacing:.12em; margin:0 }
+#page-acom .footer--acom .social{ gap:16px }
+#page-acom .footer--acom .social-icon{
+  width:58px; height:57px; border-radius:8px;
+  background:rgba(255,255,255,.4); display:grid; place-items:center;
+}
+#page-acom .footer--acom .social-icon svg{ width:30px; height:30px }
+#page-acom .footer--acom .social-icon path,
+#page-acom .footer--acom .social-icon rect,
+#page-acom .footer--acom .social-icon circle{
+  fill:#1E1E1E; stroke:#1E1E1E; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+}
+#page-acom .footer--acom .footer-copy{ font:700 15px "Jura",system-ui,sans-serif; margin:0 }
