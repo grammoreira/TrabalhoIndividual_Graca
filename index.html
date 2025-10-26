@@ -1,179 +1,579 @@
 <!doctype html>
 <html lang="pt">
 <head>
-  <link rel="stylesheet" href="style.css">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Living Around — One Page</title>
+  <title>Living Around</title>
 
+  <!-- Tipos de letra -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jura:wght@400;700&family=Josefin+Slab:wght@700&display=swap" rel="stylesheet">
 
-  <!-- CSS externo -->
-  
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ANCHORS -->
+  <!-- "Mudar de página”-->
   <span id="home" class="tab-anchor"></span>
   <span id="acomodacao" class="tab-anchor"></span>
   <span id="locais" class="tab-anchor"></span>
   <span id="blog" class="tab-anchor"></span>
   <span id="contatos" class="tab-anchor"></span>
 
-  <!-- HEADER -->
+  <!-- HEADER GLOBAL (fixo em cima) -->
+    
   <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#home"><span class="mark"></span> LIVING AROUND</a>
-      <nav class="menu">
-        <a href="#acomodacao">Acomodação</a>
-        <a href="#locais">Locais</a>
-        <a href="#blog">Blog</a>
-        <a href="#contatos">Contatos</a>
+    <div class="header-inner">
+
+      <!-- Marca lateral esquerda: símbolo -->
+      <a class="brand" href="#home" aria-label="Voltar à home">
+        <span class="brand-icon">
+         
+          <!-- 3 barras inclinadas (vector cinzento claro) -->
+          <span class="bar bar1"></span>
+          <span class="bar bar2"></span>
+          <span class="bar bar3"></span>
+        </span>
+        <span class="brand-name">LIVING AROUND</span>
+      </a>
+
+      <!-- Navegação -->
+      <nav class="main-nav">
+        <a href="#acomodacao" class="nav-link">ACOMODAÇÃO</a>
+        <a href="#locais" class="nav-link">LOCAIS</a>
+        <a href="#blog" class="nav-link">BLOG</a>
+        <a href="#contatos" class="nav-link">CONTATOS</a>
       </nav>
     </div>
   </header>
 
-  <main class="pages">
-    <!-- ============ HOME ============ -->
+   <main class="pages">
+
+    <!-- =====================================================
+         HOME
+    ====================================================== -->
     <section id="page-home" class="page">
-      <section class="hero">
-        <img class="bg" src="Imagens/Hero (estrada).png" alt=""><div class="overlay"></div>
+
+      <!-- HERO topo com imagem floresta e título grande -->
+      <section class="hero hero--home">
+        <img class="hero-bg" src="Imagens/Hero (estrada).png" alt="">
+        <div class="hero-overlay"></div>
+
         <h1 class="hero-title">LIVING AROUND</h1>
       </section>
 
-      <section class="section-hero-next">
-        <div class="wrap">
-          <span class="v-divider"></span>
-          <div class="intro">
-            <h2 class="slogan">
+      <!-- BLOCO SLOGAN / TRABALHOS -->
+      <section class="home-intro">
+        <div class="home-intro-grid">
+          <!-- lado esquerdo -->
+          <div class="home-slogan">
+            <p>
               Viva <span class="olive">livre</span>, trabalhe<br>
               de qualquer lugar,<br>
               descubra o <span class="olive">mundo</span>.
-            </h2>
+            </p>
           </div>
-          <aside class="jobs">
-            <span class="corner tl"></span>
-            <h3 class="jobs-title">Trabalhos Remotos</h3>
-            <div class="jobs-list">
-              <ul><li>Indeed</li><li>LinkedIn</li><li>JobRemote</li><li>GoogleJobs</li></ul>
-              <ul><li>Indeed</li><li>LinkedIn</li><li>JobRemote</li><li>GoogleJobs</li></ul>
+
+          <!-- divisor vertical no desktop -->
+          <div class="home-midline" aria-hidden="true"></div>
+
+          <!-- lado direito -->
+          <aside class="jobs-box">
+            <div class="jobs-corner jobs-corner--tl"></div>
+
+            <h2 class="jobs-title">Trabalhos Remotos</h2>
+
+            <div class="jobs-cols">
+              <ul>
+                <li>Indeed</li>
+                <li>LinkedIn</li>
+                <li>JobRemote</li>
+                <li>GoogleJobs</li>
+              </ul>
+              <ul>
+                <li>Indeed</li>
+                <li>LinkedIn</li>
+                <li>JobRemote</li>
+                <li>GoogleJobs</li>
+              </ul>
             </div>
-            <span class="corner br"></span>
+
+            <div class="jobs-corner jobs-corner--br"></div>
           </aside>
         </div>
       </section>
 
-      <section id="home-acom">
-        <figure class="media"><img src="Imagens/pão de forma.png" alt=""></figure>
-        <div class="callout">
-          <h3>Descubra o seu novo<br>escritório</h3>
-          <a class="btn-outline" href="#acomodacao">Descobrir</a>
-        </div>
-      </section>
+      <!-- BLOCO "Descubra o seu novo escritório" (lado escuro + foto van) -->
+      <section class="home-office">
+        <figure class="office-media">
+          <!-- van à beira mar -->
+          <img src="Imagens/pão de forma.png" alt="Carrinha junto ao mar">
+        </figure>
 
-      <section id="home-locais">
-        <div class="col-left">
-          <div class="inner">
-            <h3>Temos destinos especiais para você</h3>
-            <a class="btn" href="#locais">Explorar</a>
+        <div class="office-cta">
+          <div class="office-cta-inner">
+            <h3>Descubra o seu novo<br>escritório</h3>
+            <a class="btn-outline" href="#acomodacao">Descobrir</a>
           </div>
         </div>
-        <div class="col-right">
-          <img src="Imagens/pexels-thatguycraig000-1546898.png" alt="">
+      </section>
+
+      <!-- DESTINOS / LOCAIS -->
+
+      <section class="home-locais">
+        <!-- coluna bege -->
+        <div class="locais-left">
+          <div class="locais-left-inner">
+            <h3>
+              Temos destinos<br>
+              especiais para você
+            </h3>
+
+            <a class="btn-solid" href="#locais">Explorar</a>
+          </div>
+
+          <!-- bolinha seta topo (fica canto inferior esquerdo dessa caixa) -->
+          <a class="scroll-top-btn" href="#home" aria-label="Voltar ao topo">
+            <span class="scroll-circle"></span>
+            <span class="scroll-arrow">↑</span>
+          </a>
+        </div>
+
+        <!-- coluna foto -->
+        <div class="locais-right">
+          <img src="../TrabalhoIndividual_Graca/Imagens/destinos especiais para voce.png" alt="Estrada na floresta de outono">
         </div>
       </section>
 
-      <section id="home-blog" class="section-blog">
-        <img class="bg" src="Imagens/pexels-thepaintedsquare-583848.png" alt="">
-        <div class="inner"><button class="blog-btn" type="button">BLOG</button></div>
+      <!-- SECÇÃO BLOG (foto plano de secretária + botão BLOG preto arredondado) -->
+      <section class="home-blog">
+        <img class="blog-bg" src="../TrabalhoIndividual_Graca/Imagens/ultima imagem (blog).png" alt="">
+        <div class="blog-overlay"></div>
+
+        <div class="blog-inner">
+          <button class="blog-btn" type="button">BLOG</button>
+        </div>
+
+        <!-- seta topo no canto inferior direito da imagem grande -->
+        <a class="scroll-top-btn scroll-top-btn--corner" href="#home" aria-label="Voltar ao topo">
+          <span class="scroll-arrow">↑</span>
+        </a>
       </section>
 
+      <!-- FOOTER (só na home e acomodação) -->
       <footer class="site-footer">
-        <div class="footer-content">
-          <strong class="footer-title">LIVING AROUND</strong>
-          <div class="social">
-            <a href="#" class="social-icon" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h-2.2C10.2 3 9 4.2 9 6.3V9H7v3h2v9h3v-9h2.3l.6-3H12V6.5c0-.9.3-1.5 1.6-1.5H15V3z"/></svg>
-            </a>
-            <a href="#" class="social-icon" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none"/>
-                <circle cx="12" cy="12" r="4.2" fill="none"/>
-                <circle cx="17.3" cy="6.7" r="1.2"/>
+        <div class="footer-inner">
+          <h2 class="footer-title">LIVING AROUND</h2>
+
+          <div class="footer-icons">
+            <a class="social-icon" href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path d="M15 3h-2.2C10.2 3 9 4.2 9 6.3V9H7v3h2v9h3v-9h2.3l.6-3H12V6.5c0-.9.3-1.5 1.6-1.5H15V3z"
+                  fill="#1E1E1E" stroke="#1E1E1E" stroke-width="0"/>
               </svg>
             </a>
-            <a href="#" class="social-icon" aria-label="X">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 4l7.8 9.2L6 20h2.2l5.4-6.2L18 20h2l-6-7 5.6-6.8h-2.2l-4.8 5.8L8 4H4z"/>
+
+            <a class="social-icon" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+                  fill="none" stroke="#1E1E1E" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4.2"
+                  fill="none" stroke="#1E1E1E" stroke-width="2"/>
+                <circle cx="17.3" cy="6.7" r="1.2"
+                  fill="#1E1E1E" stroke="#1E1E1E" stroke-width="2"/>
+              </svg>
+            </a>
+
+            <a class="social-icon" href="#" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4l7.8 9.2L6 20h2.2l5.4-6.2L18 20h2l-6-7 5.6-6.8h-2.2l-4.8 5.8L8 4H4z"
+                  fill="#1E1E1E" stroke="#1E1E1E" stroke-width="0"/>
               </svg>
             </a>
           </div>
+
           <p class="footer-copy">Power by Cesae Digital</p>
         </div>
       </footer>
     </section>
 
-    <!-- ============ ACOMODAÇÃO ============ -->
+
+    <!-- =====================================================
+         ACOMODAÇÃO
+    ====================================================== -->
     <section id="page-acom" class="page">
+
+      <!-- HERO ACOMODAÇÃO:
+           imagem topo + faixa escura "O SEU NOVO OFFICE" -->
       <section class="acom-hero">
-        <img src="Imagens/acom-hero.jpg" alt="Banner Acomodação">
-        <div class="title-wrap">
-          <div class="band" aria-hidden="true"></div>
+        <img class="acom-hero-bg" src="../TrabalhoIndividual_Graca/Imagens/acomodacao.png" alt="Carrinha ao pôr do sol">
+
+        <!-- barra título -->
+        <div class="acom-titleband">
           <h2>O SEU NOVO OFFICE</h2>
         </div>
       </section>
 
-      <section class="acom-wrap">
+      <!-- CARDS DAS VIATURAS -->
+      <section class="acom-grid-wrap">
         <div class="acom-grid">
-          <!-- 6 cards (exemplo) -->
-          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Hippie Ride</h3><p class="price">A partir de <strong>95€/dia</strong></p><ul><li>Espaço para 2</li><li>Cozinha compacta</li><li>Wi-Fi portátil</li><li>4G partilhado</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1451481454041-104482d8e284?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Harvest Ride</h3><p class="price">A partir de <strong>120€/dia</strong></p><ul><li>Espaço para 4</li><li>Cozinha completa</li><li>Painel solar</li><li>Cama de casal</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1560989424-231b84201c98?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Nomade Ride</h3><p class="price">A partir de <strong>100€/dia</strong></p><ul><li>Banho quente</li><li>Estação de trabalho</li><li>Climatização</li><li>Cama de casal</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1558985040-ed4d5029d8d1?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Family Ride</h3><p class="price">A partir de <strong>95€/dia</strong></p><ul><li>4 lugares</li><li>Beliches</li><li>Cozinha</li><li>WC químico</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1542282088-fe8426682b8f?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Surf Ride</h3><p class="price">A partir de <strong>85€/dia</strong></p><ul><li>Rack pranchas</li><li>Ducha exterior</li><li>Mini-cozinha</li><li>Frigorífico</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
-          <article class="acom-card"><div class="img"><img src="https://images.unsplash.com/photo-1580584128409-7d1ae4a78f22?q=80&w=1200&auto=format&fit=crop" alt=""></div><div class="body"><h3>Cave Ride</h3><p class="price">A partir de <strong>90€/dia</strong></p><ul><li>Trailer compacto</li><li>Cama casal</li><li>Kitchenette</li><li>Ventilação</li><li>USB</li></ul><div class="more"><a href="#">+ info</a></div></div></article>
+
+          <!-- CARD 1 - Hippie Ride -->
+          <article class="acom-card">
+            <div class="acom-card-img">
+              <img src="../TrabalhoIndividual_Graca/Imagens/hippie ride.png" alt="Hippie Ride">
+            </div>
+            <div class="acom-card-body">
+              <h3>Hippie Ride</h3>
+              <p class="price">A partir de 50€/dia</p>
+              <p class="price">Equipada com:</p>
+              <ul>
+                <li>Cozinha equipada;</li>
+                <li>Cama de casal;</li>
+                <li>WC portátil;</li>
+                <li>Carregador USB;</li>
+              </ul>
+
+              <!-- este abre o modal extra -->
+              <div class="acom-more">
+                <a href="#alugar-hippie">+ info</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 2 - Harvest Ride -->
+          <article class="acom-card">
+            <div class="acom-card-img">
+              <img src="../TrabalhoIndividual_Graca/Imagens/Harvest ride.png" alt="Harvest Ride">
+            </div>
+            <div class="acom-card-body">
+              <h3>Harvest Ride</h3>
+              <p class="price">A partir de 80€/dia</p>
+              <p class="price">Equipada com:</p>
+              <ul>
+                <li>Cozinha equipada;</li>
+                <li>Cama de casal;</li>
+                <li>WC incorporado;</li>
+                <li>Carregador USB;</li>
+              </ul>
+              <div class="acom-more">
+                <a href="#">+ info</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3 - Nomade Ride -->
+          <article class="acom-card">
+            <div class="acom-card-img">
+              <img src="../TrabalhoIndividual_Graca/Imagens/Nomade Ride.png" alt="Nomade Ride">
+            </div>
+            <div class="acom-card-body">
+              <h3>Nomade Ride</h3>
+              <p class="price">A partir de 100€/dia</p>
+              <p class="price">Equipada com:</p>
+              <ul>
+                <li>Cozinha equipada;</li>
+                <li>Cama de casal;</li>
+                <li>WC incorporado;</li>
+                <li>Carregador USB;</li>
+              </ul>
+              <div class="acom-more">
+                <a href="#">+ info</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 4 - Family Ride -->
+          <article class="acom-card">
+            <div class="acom-card-img">
+              <img src="../TrabalhoIndividual_Graca/Imagens/Family ride.png" alt="Family Ride">
+            </div>
+            <div class="acom-card-body">
+              <h3>Family Ride</h3>
+              <p class="price">A partir de 50€/dia</p>
+              <p class="price">Equipada com:</p>
+              <ul>
+                <li>Cozinha equipada;</li>
+                <li>Cama de casal;</li>
+                <li>WC incorporado;</li>
+                <li>Carregador USB;</li>
+              </ul>
+              <div class="acom-more">
+                <a href="#">+ info</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 5 - Surf Ride -->
+          <article class="acom-card">
+            <div class="acom-card-img">
+              <img src="../TrabalhoIndividual_Graca/Imagens/Surf Ride.png" alt="Surf Ride">
+            </div>
+            <div class="acom-card-body">
+              <h3>Surf Ride</h3>
+              <p class="price">A partir de 60€/dia</p>
+              <p class="price">Equipada com:</p>
+              <ul>
+                <li>Cozinha equipada;</li>
+                <li>Cama de casal;</li>
+                <li>WC portátil;</li>
+                <li>Carregador USB;</li>
+              </ul>
+              <div class="acom-more">
+                <a href="#">+ info</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 6 - Cave Rive -->
+          <article class="acom-card">
+            <div class="acom-card-img">
+              <img src="../TrabalhoIndividual_Graca/Imagens/Cave Ride.png" alt="Cave Rive">
+            </div>
+            <div class="acom-card-body">
+              <h3>Cave Rive</h3>
+              <p class="price">A partir de 30€/dia</p>
+              <p class="price">Equipada com:</p>
+              <ul>
+                <li>Cozinha equipada;</li>
+                <li>Cama de casal;</li>
+                <li>WC portátil;</li>
+                <li>Carregador USB;</li>
+              </ul>
+              <div class="acom-more">
+                <a href="#">+ info</a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </section>
 
-      <!-- Footer específico da Acomodação -->
-      <footer class="footer--acom">
-        <div class="footer-content">
-          <strong class="footer-title">LIVING AROUND</strong>
-          <div class="social">
-            <a href="#" class="social-icon" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h-2.2C10.2 3 9 4.2 9 6.3V9H7v3h2v9h3v-9h2.3l.6-3H12V6.5c0-.9.3-1.5 1.6-1.5H15V3z"/></svg>
-            </a>
-            <a href="#" class="social-icon" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5" ry="5" fill="none"/>
-                <circle cx="12" cy="12" r="4.2" fill="none"/>
-                <circle cx="17.3" cy="6.7" r="1.2"/>
+      <!-- FOOTER igual home -->
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <h2 class="footer-title">LIVING AROUND</h2>
+
+          <div class="footer-icons">
+            <a class="social-icon" href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path d="M15 3h-2.2C10.2 3 9 4.2 9 6.3V9H7v3h2v9h3v-9h2.3l.6-3H12V6.5c0-.9.3-1.5 1.6-1.5H15V3z"
+                  fill="#1E1E1E" stroke="#1E1E1E" stroke-width="0"/>
               </svg>
             </a>
-            <a href="#" class="social-icon" aria-label="X">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7.8 9.2L6 20h2.2l5.4-6.2L18 20h2l-6-7 5.6-6.8h-2.2l-4.8 5.8L8 4H4z"/></svg>
+
+            <a class="social-icon" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" rx="5" ry="5"
+                  fill="none" stroke="#1E1E1E" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4.2"
+                  fill="none" stroke="#1E1E1E" stroke-width="2"/>
+                <circle cx="17.3" cy="6.7" r="1.2"
+                  fill="#1E1E1E" stroke="#1E1E1E" stroke-width="2"/>
+              </svg>
+            </a>
+
+            <a class="social-icon" href="#" aria-label="X / Twitter">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4l7.8 9.2L6 20h2.2l5.4-6.2L18 20h2l-6-7 5.6-6.8h-2.2l-4.8 5.8L8 4H4z"
+                  fill="#1E1E1E" stroke="#1E1E1E" stroke-width="0"/>
+              </svg>
             </a>
           </div>
+
           <p class="footer-copy">Power by Cesae Digital</p>
         </div>
       </footer>
     </section>
 
-    <!-- Placeholders -->
-    <section id="page-locais" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Locais</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
-    <section id="page-blog" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Blog</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
-    <section id="page-contatos" class="page"><section class="container" style="padding:56px 0"><h2 style="font-family:'Jura'">Contatos</h2><p style="background:#fff;border:1px solid #dcd6c2;border-radius:12px;padding:16px">Conteúdo em breve.</p></section></section>
+
+    <!-- =====================================================
+         LOCAIS
+    ====================================================== -->
+    <section id="page-locais" class="page page-dark">
+
+      <section class="locais-hero">
+        <img class="locais-bg" src="../TrabalhoIndividual_Graca/Imagens/page locais.png" alt="Mapa vintage e bússola">
+
+        <div class="locais-inner">
+          <!-- Caixa seleção país / cidade -->
+          <form class="locais-form" action="#locais" method="get">
+            <label class="fld">
+              Escolha o país:
+              <div class="select-wrap">
+                <select>
+                  
+                  <option>Portugal</option>
+                  <option>Espanha</option>  
+                  <option>Itália</option>
+                </select>
+                <span class="sel-caret">▼</span>
+              </div>
+            </label>
+
+            <label class="fld">
+              Escolha a cidade:
+              <div class="select-wrap">
+                <select>
+                  
+                  <option>Porto</option>
+                  <option>Lisboa</option>
+                  <option>Faro</option>
+                </select>
+                <span class="sel-caret">▼</span>
+              </div>
+            </label>
+
+            <button class="btn-locais" type="submit">Ver</button>
+          </form>
+
+          <!-- bloco mapa + morada  -->
+          <div class="locais-info">
+            <div class="map-frame">
+              <iframe title="Mapa Porto" loading="lazy"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=-8.68%2C41.09%2C-8.54%2C41.19&layer=mapnik&marker=41.1579%2C-8.6291"
+                style="width:100%;height:220px;border:0;border-radius:8px;"></iframe>
+            </div>
+
+            <div class="locais-address">
+              <p class="addr-strong">LIVING AROUND - Porto</p>
+              <p class="addr-line">Rua da Alegria, 666<br>4000-789 - Porto</p>
+              <p class="addr-line">livingaround_porto@living.com</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    
+    </section>
+
+
+    <!-- =====================================================
+         BLOG (placeholder)
+    ====================================================== -->
+    <section id="page-blog" class="page page-dark">
+      <section class="blog-hero">
+        <div class="blog-center">
+          <h2 class="blog-title">BLOG</h2>
+          <p class="blog-desc">Conteúdo em breve.</p>
+        </div>
+      </section>
+
+         </section>
+
+
+    <!-- =====================================================
+         CONTATOS
+    ====================================================== -->
+    <section id="page-contatos" class="page page-dark">
+
+      <section class="contact-hero">
+        <img class="contact-bg" src="../TrabalhoIndividual_Graca/Imagens/page contactos.png" alt="Van ao pôr do sol" />
+        <div class="contact-overlay"></div>
+
+        <!-- Conteúdo principal: form e citação -->
+        <div class="contact-main">
+          <!-- cartão formulário -->
+          <form class="contact-card" action="#contatos-alert" method="get">
+            <div class="contact-field">
+              <label>Nome:</label>
+              <input required type="text" name="nome">
+            </div>
+
+            <div class="contact-field">
+              <label>Email:</label>
+              <input required type="email" name="email">
+            </div>
+
+            <div class="contact-field">
+              <label>Mensagem:</label>
+              <textarea required rows="5" name="mensagem"></textarea>
+            </div>
+
+            <button class="contact-send" type="submit">Enviar</button>
+          </form>
+
+          <!-- bloco citação à direita -->
+          <blockquote class="contact-quote">
+            <p>“Viajar é descobrir que todos estão errados sobre outros países.”</p>
+            <footer>- Aldous Huxley</footer>
+          </blockquote>
+        </div>
+      </section>
+
+         </section>
+
+
   </main>
 
-  <!-- VOLTAR AO TOPO -->
-  <a class="scroll-top" href="#home" aria-label="Voltar ao topo">
-    <svg viewBox="0 0 30 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15 0L0 35H30L15 0Z" fill="#000"/></svg>
-  </a>
 
+  <!-- =====================================================
+       MODAL SUCESSO FORM CONTATO
+  ====================================================== -->
+  <div id="contatos-alert" class="modal-success">
+    <a class="success-backdrop" href="#contatos"></a>
+    <div class="success-box">
+      <p>Seu formulário foi enviado com sucesso!</p>
+      <a class="success-btn" href="#contatos">Ok</a>
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       MODAL HIPPIE RIDE / ALUGAR
+       abre quando se clica "+ info" na Hippie Ride
+  ====================================================== -->
+  <div id="alugar-hippie" class="modal-hippie">
+    <a class="hippie-backdrop" href="#acomodacao"></a>
+
+    <div class="hippie-dialog">
+      <div class="hippie-img-wrap">
+        <img src="../TrabalhoIndividual_Graca/Imagens/hippie ride.png" alt="Hippie Ride">
+      </div>
+
+      <div class="hippie-body">
+        <h2 class="hippie-title">Hippie Ride</h2>
+
+        <p class="hippie-text">
+          Imagine acordar com o som das ondas na praia, estacionar à
+          beira de uma floresta serena ou partir numa viagem
+          espontânea sem preocupações com hotéis ou horários.
+          Alugar uma carrinha adaptada é sinónimo de liberdade, conforto e aventura - tudo em um só lugar!
+        </p>
+
+        <p class="hippie-text">
+          A nossa carrinha é a solução perfeita para viajantes que buscam autonomia e pratiidade, sem abrir mão do essencial.
+          Por apenas 50€ por dia, você tem um lar sobre rodas totalmente equipado para tornar sua viagem inmesquecivel.
+        </p>
+
+        <ul class="hippie-list">
+          <li>Cama de casal confortável - Descanse com todo o espaço que precisa;</li>
+          <li>Cozinha equipada - Prepare suas refeições favoritas a qualquer momento;</li>
+          <li>WC portátil (privacidade e autonomia);</li>
+          <li>Carregador USB - Mantenha seus dispositivos sempre prontos para uso.;</li>
+        </ul>
+
+        <p class="hippie-text">
+          Vive onde quiseres, dorme onde quiseres, trabalha onde
+          te inspira - Reserve já!!
+        </p>
+      </div>
+
+      <div class="hippie-cta">
+        <a class="hippie-btn" href="#acomodacao">Alugar</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- força a primeira página ser sempre a home se não houver hash -->
   <script>
-    if(!location.hash) location.hash = '#home';
+    if (!location.hash) {
+      location.hash = '#home';
+    }
   </script>
+
 </body>
 </html>
